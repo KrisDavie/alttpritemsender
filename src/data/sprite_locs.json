@@ -1,0 +1,408 @@
+{
+    "Progressive Bow": {
+        "loc": [
+            0,
+            0
+        ],
+        "id": 100
+    },
+    "Blue Boomerang": {
+        "loc": [
+            0,
+            1
+        ],
+        "id": 12
+    },
+    "Red Boomerang": {
+        "loc": [
+            0,
+            2
+        ],
+        "id": 42
+    },
+    "Hookshot": {
+        "loc": [
+            0,
+            3
+        ],
+        "id": 10
+    },
+    "Magic Powder": {
+        "loc": [
+            0,
+            4
+        ],
+        "id": 13
+    },
+    "Big Key (Escape)": {
+        "loc": [
+            0,
+            5
+        ],
+        "id": 159
+    },
+    "Big Key (Eastern Palace)": {
+        "loc": [
+            0,
+            6
+        ],
+        "id": 157
+    },
+    "Big Key (Desert Palace)": {
+        "loc": [
+            0,
+            7
+        ],
+        "id": 156
+    },
+    "Big Key (Tower of Hera)": {
+        "loc": [
+            0,
+            8
+        ],
+        "id": 149
+    },
+    "Big Key (Agahnims Tower)": {
+        "loc": [
+            0,
+            9
+        ],
+        "id": 155
+    },
+    "Fire Rod": {
+        "loc": [
+            1,
+            0
+        ],
+        "id": 7
+    },
+    "Ice Rod": {
+        "loc": [
+            1,
+            1
+        ],
+        "id": 8
+    },
+    "Bombos": {
+        "loc": [
+            1,
+            2
+        ],
+        "id": 15
+    },
+    "Ether": {
+        "loc": [
+            1,
+            3
+        ],
+        "id": 16
+    },
+    "Quake": {
+        "loc": [
+            1,
+            4
+        ],
+        "id": 17
+    },
+    "Small Key (Escape)": {
+        "loc": [
+            1,
+            5
+        ],
+        "id": 160
+    },
+    "Small Key (Eastern Palace)": {
+        "loc": [
+            1,
+            6
+        ],
+        "id": 162
+    },
+    "Small Key (Desert Palace)": {
+        "loc": [
+            1,
+            7
+        ],
+        "id": 163
+    },
+    "Small Key (Tower of Hera)": {
+        "loc": [
+            1,
+            8
+        ],
+        "id": 170
+    },
+    "Small Key (Agahnims Tower)": {
+        "loc": [
+            1,
+            9
+        ],
+        "id": 164
+    },
+    "Lamp": {
+        "loc": [
+            2,
+            0
+        ],
+        "id": 18
+    },
+    "Magic Hammer": {
+        "loc": [
+            2,
+            1
+        ],
+        "id": 9
+    },
+    "Flute": {
+        "loc": [
+            2,
+            2
+        ],
+        "id": 20
+    },
+    "Bug Catching Net": {
+        "loc": [
+            2,
+            3
+        ],
+        "id": 33
+    },
+    "Book of Mudora": {
+        "loc": [
+            2,
+            4
+        ],
+        "id": 29
+    },
+    "Big Key (Palace of Darkness)": {
+        "loc": [
+            2,
+            5
+        ],
+        "id": 153
+    },
+    "Big Key (Swamp Palace)": {
+        "loc": [
+            2,
+            6
+        ],
+        "id": 154
+    },
+    "Big Key (Skull Woods)": {
+        "loc": [
+            2,
+            7
+        ],
+        "id": 151
+    },
+    "Big Key (Thieves Town)": {
+        "loc": [
+            2,
+            8
+        ],
+        "id": 148
+    },
+    "Big Key (Ice Palace)": {
+        "loc": [
+            2,
+            9
+        ],
+        "id": 150
+    },
+    "Empty Bottle": {
+        "loc": [
+            3,
+            0
+        ],
+        "id": 22
+    },
+    "Cane of Somaria": {
+        "loc": [
+            3,
+            1
+        ],
+        "id": 21
+    },
+    "Cane of Byrna": {
+        "loc": [
+            3,
+            2
+        ],
+        "id": 24
+    },
+    "Magic Cape": {
+        "loc": [
+            3,
+            3
+        ],
+        "id": 25
+    },
+    "Magic Mirror": {
+        "loc": [
+            3,
+            4
+        ],
+        "id": 26
+    },
+    "Small Key (Palace of Darkness)": {
+        "loc": [
+            3,
+            5
+        ],
+        "id": 166
+    },
+    "Small Key (Swamp Palace)": {
+        "loc": [
+            3,
+            6
+        ],
+        "id": 165
+    },
+    "Small Key (Skull Woods)": {
+        "loc": [
+            3,
+            7
+        ],
+        "id": 168
+    },
+    "Small Key (Thieves Town)": {
+        "loc": [
+            3,
+            8
+        ],
+        "id": 171
+    },
+    "Small Key (Ice Palace)": {
+        "loc": [
+            3,
+            9
+        ],
+        "id": 169
+    },
+    "Progressive Armor": {
+        "loc": [
+            4,
+            0
+        ],
+        "id": 96
+    },
+    "Boots": {
+        "loc": [
+            4,
+            1
+        ],
+        "id": 75
+    },
+    "Progressive Glove": {
+        "loc": [
+            4,
+            2
+        ],
+        "id": 97
+    },
+    "Flippers": {
+        "loc": [
+            4,
+            3
+        ],
+        "id": 30
+    },
+    "Moon Pearl": {
+        "loc": [
+            4,
+            4
+        ],
+        "id": 31
+    },
+    "Mushroom": {
+        "loc": [
+            4,
+            5
+        ],
+        "id": 41
+    },
+    "Big Key (Misery Mire)": {
+        "loc": [
+            4,
+            7
+        ],
+        "id": 152
+    },
+    "Big Key (Turtle Rock)": {
+        "loc": [
+            4,
+            8
+        ],
+        "id": 147
+    },
+    "Big Key (Ganons Tower)": {
+        "loc": [
+            4,
+            9
+        ],
+        "id": 146
+    },
+    "Piece of Heart": {
+        "loc": [
+            5,
+            0
+        ],
+        "id": 23
+    },
+    "Heart Container": {
+        "loc": [
+            5,
+            1
+        ],
+        "id": 62
+    },
+    "Magic Upgrade (1/2)": {
+        "loc": [
+            5,
+            2
+        ],
+        "id": 78
+    },
+    "Progressive Sword": {
+        "loc": [
+            5,
+            3
+        ],
+        "id": 94
+    },
+    "Progressive Shield": {
+        "loc": [
+            5,
+            4
+        ],
+        "id": 95
+    },
+    "Shovel": {
+        "loc": [
+            5,
+            5
+        ],
+        "id": 19
+    },
+    "Small Key (Misery Mire)": {
+        "loc": [
+            5,
+            7
+        ],
+        "id": 167
+    },
+    "Small Key (Turtle Rock)": {
+        "loc": [
+            5,
+            8
+        ],
+        "id": 172
+    },
+    "Small Key (Ganons Tower)": {
+        "loc": [
+            5,
+            9
+        ],
+        "id": 173
+    }
+}
