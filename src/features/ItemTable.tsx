@@ -61,7 +61,7 @@ function ItemTable() {
             key={key}
             id={key}
             onClick={handleItemClick}
-            className={`w-[48px] h-[48px] hover:${cooldown ? "border-2 border-red-500" : "border-2 border-green-500"} transition ease-out duration-300 ${reportGlow === key ? "bg-green-500 bg-opacity-70": ""} `}
+            className={`w-[48px] h-[48px] hover:border-2 ${cooldown ? "border-red-500" : "border-green-500"} transition ease-out duration-300 ${reportGlow === key ? "bg-green-500 bg-opacity-70": ""} `}
             style={{
               position: "absolute",
               left: item.loc[1] * 48,
