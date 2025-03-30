@@ -1,6 +1,6 @@
 import _items from "../data/sprite_locs.json"
 import { IItemSendInfo } from "../App"
-import { Forward, Lock, LockOpen} from "lucide-react"
+import { Forward, LockOpen } from "lucide-react"
 
 interface IItems {
   [key: string]: IItemInfo
@@ -29,7 +29,7 @@ function ItemDisplayPanel(props: { sentItems: IItemSendInfo[] }) {
     return (
       <div
         key={`${item}_${index}`}
-        className="flex flex-row items-center h-[48px] w-[120px] mt-3"
+        className="flex flex-row items-center h-[48px] w-[120px] mt-2"
       >
         <div
           key={`${item}_${index}_img`}
@@ -50,20 +50,27 @@ function ItemDisplayPanel(props: { sentItems: IItemSendInfo[] }) {
             className="flex flex-row items-center"
           >
             <Forward size={12} />
-            {ts.toLocaleTimeString()}
+            {ts.toLocaleTimeString("en-US", {
+              hour12: false,
+            })}
           </div>
-          <div key={`${item}_${index}_unlock`} className="flex flex-col items-center">
+          <div
+            key={`${item}_${index}_unlock`}
+            className="flex flex-col items-center"
+          >
             {item.unlockMethod !== "locked" ? (
               <>
-              <div className="flex flex-row items-center"
->
-                <LockOpen size={12} />
-                {unlockTs.toLocaleTimeString()}
-              </div>
-              ({item.unlockMethod})
+                <div className="flex flex-row items-center">
+                  <LockOpen size={12} />
+                  {unlockTs.toLocaleTimeString("en-US", {
+                    hour12: false,
+                  })}
+                </div>
+                ({item.unlockMethod})
               </>
-            ): ""}
-
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </div>
@@ -71,7 +78,7 @@ function ItemDisplayPanel(props: { sentItems: IItemSendInfo[] }) {
   })
 
   return (
-    <div className="flex flex-row flex-wrap align-middle items-center">
+    <div className="flex flex-row flex-wrap align-middle items-center mt-2">
       {itemList}
     </div>
   )
