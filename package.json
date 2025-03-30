@@ -1,5 +1,5 @@
 {
-  "name": "alttpr-itemsender",
+  "name": "alttpr-gominusone",
   "private": true,
   "version": "0.0.1",
   "type": "module",
@@ -29,13 +29,14 @@
     "@reduxjs/toolkit": "^1.8.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
-    "lucide-react": "^0.287.0",
+    "lucide-react": "^0.485.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.47.0",
     "react-redux": "^8.0.1",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7",
+    "usehooks-ts": "^3.1.1",
     "zod": "^3.22.4"
   },
   "devDependencies": {

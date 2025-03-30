@@ -1,12 +1,12 @@
 import type { PayloadAction } from "@reduxjs/toolkit"
 import { createSlice } from "@reduxjs/toolkit"
-import { U } from "vitest/dist/types-e3c9754d.js"
 
 export interface SniSliceState {
   grpcHost: string
   grpcPort: number
   grpcConnected: boolean
   deviceList: string[]
+  receiving: boolean
   raceOverride?: boolean
   connectedDevice?: string
   curRead?: number
@@ -27,12 +27,13 @@ const initialState: SniSliceState = {
   grpcConnected: false,
   deviceList: [],
   raceOverride: false,
+  receiving: false,
   connectedDevice: undefined,
   curRead: undefined,
   curTimestamp: undefined,
   lastRead: undefined,
   lastTimestamp: undefined,
-  pollInterval: 500,
+  pollInterval: 250,
   memoryMapping: undefined,
   romName: undefined,
   sa1Init: false,
@@ -63,6 +64,9 @@ export const sniSlice = createSlice({
     setLastRead: (state, action: PayloadAction<[number, number]>) => {
       state.lastRead = action.payload[0]
       state.lastTimestamp = action.payload[1]
+    },
+    setreceiving: (state, action: PayloadAction<boolean>) => {
+      state.receiving = action.payload
     },
     setCurRead: (state, action: PayloadAction<[number, number]>) => {
       state.curRead = action.payload[0]
@@ -106,6 +110,7 @@ export const {
   setGrpcPort,
   setGrpcConnected,
   setLastRead,
+  setreceiving,
   setCurRead,
   setDeviceList,
   setPollInterval,

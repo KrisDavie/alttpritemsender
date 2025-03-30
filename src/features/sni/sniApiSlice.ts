@@ -9,6 +9,7 @@ import {
   setMemoryMapping,
   setPrevSram,
   setRaceOverride,
+  setreceiving,
   setRomName,
   setSa1Init,
 } from "./sniSlice"
@@ -173,6 +174,40 @@ export const sniApiSlice = createApi({
             ]),
           },
         })
+
+        queryApi.dispatch(setreceiving(true))
+        last_item_id = 255
+        last_event_idx = 0
+
+        // Wait for the player to finish receiving before sending the next item
+        while (last_item_id != 0) {
+          const readCurItem = await controlMem.singleRead({
+            uri: connectedDevice,
+            request: {
+              requestMemoryMapping: MemoryMapping.LoROM,
+              requestAddress: parseInt("f5f4d0", 16),
+              requestAddressSpace: AddressSpace.FxPakPro,
+              size: 3,
+            },
+          })
+          if (!readCurItem.response.response) {
+            return { error: "Error reading memory, no reposonse" }
+          }
+          last_item_id = readCurItem.response.response.data[2]
+          last_event_idx =
+              readCurItem.response.response.data[0] * 256 +
+              readCurItem.response.response.data[1]
+          if (last_item_id === 0) {
+            if (last_event_idx === 0) {
+              // This should never be 0, but the rom sometimes sets it to 0 when changing state
+              // Wait for it to be a real value again
+              continue 
+            }
+          }
+          await new Promise(r => setTimeout(r, 250))
+        }
+        await new Promise(r => setTimeout(r, 1500))
+        queryApi.dispatch(setreceiving(false))
         return { data: writeResponse?.response.response?.requestAddress }
       }
     }),
@@ -214,32 +249,20 @@ export const sniApiSlice = createApi({
           var memMap = memMaps[state.sni.memoryMapping]
         }
 
-        // Read rom name
-        let romNameResponse = await controlMem.singleRead({
+        let readResponse = await controlMem.singleRead({
           uri: connectedDevice,
           request: { 
             requestMemoryMapping: memMap,
-            requestAddress: 0x7FC0,
+            requestAddress: arg.memLoc,
             requestAddressSpace: AddressSpace.FxPakPro,
-            size: 0x15}
+            size: arg.size}
         })
 
-        if (!romNameResponse.response.response) {
-          return { error: "Error reading rom name" }
+        if (!readResponse.response.response) {
+          return { error: "Error reading." }
         }
 
-        let romName = Array.from(romNameResponse.response.response.data).map(byte => String.fromCharCode(byte)).join("")
-
-        if (romName !== state.sni.romName) {
-          queryApi.dispatch(romChange(romName))
-        }
-        let memResponse
-
-        let module
-        let coords
-        let world 
-
-        return { data: module }
+        return { data: readResponse.response.response.data }
       },
     }),
   }),

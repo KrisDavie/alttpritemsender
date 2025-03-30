@@ -1,4 +1,4 @@
-# ALTTPR Item Sender
+# ALTTPR Go-1
 
 A quick and dirty web tool to send items to an ALttPR game using the multiworld implementation.
 
