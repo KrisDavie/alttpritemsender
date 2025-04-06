@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import Header from "./features/Header"
 import { useReadMemoryQuery } from "./features/sni/sniApiSlice"
-import { useAppDispatch, useAppSelector } from "./app/hooks"
+import { useAppSelector, usePrevious } from "./app/hooks"
 import ItemTable from "./features/ItemTable"
 import ItemDisplayPanel from "./features/ItemDisplayPanel"
 import _items from "./data/items.json"
@@ -19,6 +19,22 @@ export interface IItemSendInfo {
   unlockMethod: "manual" | "auto" | "locked"
 }
 
+const dungeonKeyMap: { [key: number]: string } = {
+  0: "Small Key (Escape)",
+  1: "Small Key (Eastern Palace)",
+  2: "Small Key (Desert Palace)",
+  3: "Small Key (Agahnims Tower)",
+  4: "Small Key (Swamp Palace)",
+  5: "Small Key (Palace of Darkness)",
+  6: "Small Key (Misery Mire)",
+  7: "Small Key (Skull Woods)",
+  8: "Small Key (Ice Palace)",
+  9: "Small Key (Tower of Hera)",
+  10: "Small Key (Thieves Town)",
+  11: "Small Key (Turtle Rock)",
+  12: "Small Key (Ganons Tower)",
+}
+
 function App() {
   const pollingInterval = useAppSelector((state) => state.sni.pollInterval)
   const [sentItems, setSentItems] = useState<IItemSendInfo[]>([])
@@ -29,10 +45,17 @@ function App() {
   const connectedDevice = useAppSelector((state) => state.sni.connectedDevice)
   const items: IItems = _items
 
-  const memReply = useReadMemoryQuery(
+  const itemHoldmemReply = useReadMemoryQuery(
     { memLoc: 0xf502d8, size: 1 },
     { pollingInterval: pollingInterval, skip: canSend },
   ).data
+
+  const keysMemReply = useReadMemoryQuery(
+    { memLoc: 0xf5f4e1, size: 0x0D },
+    { pollingInterval: pollingInterval, skip: canSend },
+  ).data
+
+  const prevKeysMemReply = usePrevious(keysMemReply)
 
   const romNameMem = useReadMemoryQuery(
     { memLoc: 0xe02000, size: 0x15 },
@@ -46,15 +69,34 @@ function App() {
   )
 
   useEffect(() => {
-    if (!connectedDevice || receiving || canSend || !memReply) return
-    const memReplyInt = parseInt(memReply.toString(), 16)
+    if (!connectedDevice || receiving || canSend || !keysMemReply || !prevKeysMemReply) return
+    // compare prevKeysMemReply and keysMemReply arrays
+    var keysChanged = prevKeysMemReply.reduce((acc: Array<number>, prevKey: number, index: number) => {
+      if (prevKey !== keysMemReply[index]) {
+        acc.push(index)
+      }
+      return acc
+    }, [])
+    keysChanged.forEach((key: number) => {
+      if (key >= 0 && key <= 12) {
+        const item = dungeonKeyMap[key]
+        if (item === sentItems[0]?.item) {
+          handleUnlock("auto")
+        }
+      }
+    })
+  }, [keysMemReply, prevKeysMemReply, canSend, receiving, connectedDevice])
+
+  useEffect(() => {
+    if (!connectedDevice || receiving || canSend || !itemHoldmemReply) return
+    const memReplyInt = parseInt(itemHoldmemReply.toString(), 16)
     if (memReplyInt === 0) {
       return
     }
     if (items[memReplyInt] === sentItems[0].item) {
       handleUnlock("auto")
     }
-  }, [memReply, canSend, receiving, connectedDevice])
+  }, [itemHoldmemReply, canSend, receiving, connectedDevice])
 
   useEffect(() => {
     if (romNameLS === "") return

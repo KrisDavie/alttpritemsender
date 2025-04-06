@@ -106,7 +106,7 @@ export const sniApiSlice = createApi({
           return { error: "No device or memory data" }
         }
         let game_mode = 0x00
-
+        queryApi.dispatch(setreceiving(true))    
         while (!ingame_modes.includes(game_mode)) {
           const game_mode_response = await controlMem.singleRead({
             uri: connectedDevice,
@@ -157,9 +157,7 @@ export const sniApiSlice = createApi({
           }
           await new Promise(r => setTimeout(r, 250))
         }
-
         let new_event_idx = [(last_event_idx + 1) >> 8, (last_event_idx + 1) & 0xff]
-      
         writeResponse = await controlMem.singleWrite({
           uri: connectedDevice,
           request: {
@@ -175,7 +173,6 @@ export const sniApiSlice = createApi({
           },
         })
 
-        queryApi.dispatch(setreceiving(true))
         last_item_id = 255
         last_event_idx = 0
 
